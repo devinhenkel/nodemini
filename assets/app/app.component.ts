@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {MessageComponent} from './messages/message.component';
+import {Message} from './messages/message';
 
 @Component({
     moduleId: module.id,
@@ -8,8 +9,5 @@ import {MessageComponent} from './messages/message.component';
     directives: [MessageComponent]
 })
 export class AppComponent {
-  message = {
-    content: "Hey, D Dogg Diggity Dogg Daddy Daddy Dogg Dogg",
-    author: "Devin"
-  }
+  message:Message = new Message('Flibbity floo! Deep Dudu!!!', null, 'D Dogg');
 }

@@ -1,4 +1,4 @@
-import {Component} from "@angular/core"
+import {Component, Input, Output, EventEmitter} from "@angular/core"
 import {Message} from "./message"
 
 @Component({
@@ -21,5 +21,10 @@ import {Message} from "./message"
   `]
 })
 export class MessageComponent {
-  message:Message = new Message('What up, D Dogg Diggity Dogg Daddy Daddy Dogg Dogg?', null, 'Devin');
+  @Input() message:Message;
+  @Output() editClick = new EventEmitter<string>();
+
+  onClick() {
+    this.editClick.emit('Flap doodle! You got a lot of nerve!');
+  }
 }
