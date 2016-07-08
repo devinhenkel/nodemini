@@ -1,10 +1,6 @@
-<!-- <div class="row">
-  <section class="col-md-8 col-md-offset-2">
-    <input type="text" [(ngModel)]="message.content">
-  </section>
-</div> -->
-<div class="row">
-  <section class="col-md-8 col-md-offset-2">
-    <my-message *ngFor="let message of messages" [message]="message" (editClick)="message.content = $event">wait for it...</my-message>
-  </section>
+<div class="row spacing">
+  <my-message-create></my-message-create>
+</div>
+<div class="row spacing">
+  <my-message-list></my-message-list>
 </div>
