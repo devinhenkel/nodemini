@@ -11,6 +11,10 @@ export class MessageService {
     console.log(this.messages);
   }
 
+  editMessage(message: Message) {
+    this.messages[this.messages.indexOf(message)] = new Message('Edited message', null, 'Dummy');
+  }
+
   deleteMessage(message: Message) {
     this.messages.splice(this.messages.indexOf(message), 1);
   }
