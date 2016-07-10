@@ -15,5 +15,11 @@ export class MessageCreateComponent {
   onCreate(content: string) {
     const message:Message = new Message(content, null, 'Dummy');
     this._messageService.addMessage(message);
+
+  }
+
+  onSubmit(form: any) {
+    const message:Message = new Message(form.content, null, 'Slacker');
+    this._messageService.addMessage(message);
   }
 }
