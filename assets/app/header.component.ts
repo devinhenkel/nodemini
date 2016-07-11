@@ -16,6 +16,10 @@ import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
       float: none;
       display: inline-block;
     }
+    .router-link-active {
+      background-color: #337ab7;
+      color: white;
+    }
   `],
   directives: [ROUTER_DIRECTIVES]
 
