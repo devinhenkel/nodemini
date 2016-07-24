@@ -13,7 +13,7 @@ export class MessageService {
     addMessage(message: Message) {
         const body = JSON.stringify(message);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this._http.post('http://localhost:3000/message', body, {headers: headers})
+        return this._http.post('/message', body, {headers: headers})
           .map(response => {
             const data = response.json().obj;
             let message = new Message(data.content, data._id, 'Flubby', null);
@@ -23,7 +23,7 @@ export class MessageService {
     }
 
     getMessages() {
-        return this._http.get('http://localhost:3000/message')
+        return this._http.get('/message')
           .map(response => {
             const data = response.json().obj;
             let objs: any[] = [];
