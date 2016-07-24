@@ -20,11 +20,17 @@ import { MessageService } from "./message.service";
 export class MessageInputComponent {
     message:Message = null;
 
-    constructor(private _messageService:MessageService) {
-    }
+    constructor(private _messageService: MessageService) {}
 
     onSubmit(form:any) {
         const message:Message = new Message(form.content, null, 'Dummy');
-        this._messageService.addMessage(message);
+        this._messageService.addMessage(message)
+          .subscribe(
+            data => {
+              console.log(data);
+              this._messageService.messages.push(data);
+            },
+            error => console.log(error)
+          );
     }
 }
