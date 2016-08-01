@@ -10,19 +10,30 @@ import { MessageService } from "./message.service";
             <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <input ngControl="content" type="text" class="form-control" id="content" #input>
+                    <input ngControl="content" type="text" class="form-control" id="content" #input [value]="message?.content">
                 </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary">{{ !message ? 'Send Message' : 'Save Message' }}</button>
+                <button type="button" (click)="onCancel()" class="btn btn-danger" *ngIf="message">Cancel</button>
             </form>
         </section>
     `
 })
-export class MessageInputComponent {
-    message:Message = null;
+export class MessageInputComponent implements OnInit {
+    message: Message = null;
 
     constructor(private _messageService: MessageService) {}
 
     onSubmit(form:any) {
+      if (this.message) {
+        //Edit
+        this.message.content = form.content;
+        this._messageService.updateMessage(this.message)
+          .subscribe(
+            data => console.log(data),
+            error => console.log(error)
+          );
+        this.message = null;
+      } else {
         const message:Message = new Message(form.content, null, 'Dummy');
         this._messageService.addMessage(message)
           .subscribe(
@@ -32,5 +43,19 @@ export class MessageInputComponent {
             },
             error => console.log(error)
           );
+      }
+
+    }
+
+    onCancel(){
+      this.message = null;
+    }
+
+    ngOnInit() {
+      this._messageService.messageIsEditable.subscribe(
+        message => {
+          this.message = message;
+        }
+      );
     }
 }
