@@ -14,8 +14,10 @@ var familyRoutes = require('./routes/family');
 
 var app = express();
 mongoose.connect('localhost:27017/node-angular');
-var db = new neo4j.GraphDatabase('http://neo4j:G00fu$3141@localhost:7474');
-//var db = new neo4j.GraphDatabase('http://app51983487-l9oWQa:m1DEuRU5xqcunwnLQpcY@app51983487l9owqa.sb05.stations.graphenedb.com:24789');
+if (neo4j){
+  var db = new neo4j.GraphDatabase('http://neo4j:G00fu$3141@localhost:7474');
+}
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
