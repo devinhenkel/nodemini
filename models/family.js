@@ -1,6 +1,6 @@
 var apoc = require('apoc');
-var User = require('../models/user');
+//var User = require('../models/user');
 
 
 
-module.exports = mongoose.model('Family', schema);
+//module.exports = mongoose.model('Family', schema);
