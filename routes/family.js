@@ -40,7 +40,7 @@ router.get('/:relationship/:name', function(req, res, next){
             console.log('No user found.');
         } else {
             var user = result;
-            console.log(JSON.stringify(user, null, 4));
+            //console.log(JSON.stringify(user, null, 4));
             res.send(JSON.stringify(user, null, 4));
         }
 
