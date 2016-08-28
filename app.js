@@ -10,6 +10,7 @@ var neo4j = require('neo4j');
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
+var userRoutes = require('./routes/users');
 var familyRoutes = require('./routes/family');
 
 var app = express();
@@ -37,7 +38,8 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/family', familyRoutes);
+app.use('/familyapi', familyRoutes);
+app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
 app.use('/', appRoutes);
 

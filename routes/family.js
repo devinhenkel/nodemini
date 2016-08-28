@@ -6,7 +6,32 @@ if (neo4j){
 var router = express.Router();
 
 
+router.get('/', function(req, res, next){
+  if (db){
+    var queryString = 'MATCH (x:Person) RETURN x.firstname, x.lastname';
 
+    var node = db.cypher({
+        query: queryString,
+        params: {
+
+        },
+    }, function (err, results) {
+        if (err) throw err;
+        var result = results;
+        if (!result) {
+            console.log('No user found.');
+        } else {
+            var user = result;
+            console.log("route:"+JSON.stringify(user, null, 4));
+            res.send(JSON.stringify(user, null, 4));
+        }
+
+        //response.send('pages/graphene', { results: results, something: "else" });
+    });
+  } else {
+    res.send('db not started');
+  }
+});
 
 router.get('/:relationship/:name', function(req, res, next){
   console.log(req.params.name);

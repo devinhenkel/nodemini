@@ -4,10 +4,11 @@ import { Routes, ROUTER_DIRECTIVES } from "@angular/router";
 import { MessagesComponent } from "./messages/messages.component";
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { HeaderComponent } from "./header.component";
+import { FamilyComponent } from "./family/family.component"
 
 @Component({
     selector: 'my-app',
-    template: ` 
+    template: `
         <div class="container">
             <my-header></my-header>
             <router-outlet></router-outlet>
@@ -17,8 +18,9 @@ import { HeaderComponent } from "./header.component";
 })
 @Routes([
     {path: '/', component: MessagesComponent},
-    {path: '/auth', component: AuthenticationComponent}
+    {path: '/auth', component: AuthenticationComponent},
+    {path: '/family', component: FamilyComponent}
 ])
 export class AppComponent {
-    
+
 }
