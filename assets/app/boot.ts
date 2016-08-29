@@ -9,5 +9,6 @@ import { AppComponent } from "./app.component";
 import { MessageService } from "./messages/message.service";
 import { AuthService } from "./auth/auth.service";
 import { FamilyService } from "./family/family.service";
+import { RelationshipService } from "./family/relationship.service";
 
-bootstrap(AppComponent, [MessageService, AuthService, FamilyService, ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy}), HTTP_PROVIDERS]);
+bootstrap(AppComponent, [MessageService, AuthService, FamilyService, RelationshipService, ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy}), HTTP_PROVIDERS]);

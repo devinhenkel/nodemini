@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next){
   if (db){
-    var queryString = 'MATCH (x:Person) RETURN x.firstname, x.lastname';
+    var queryString = 'MATCH (x:Person) RETURN x.firstname, x.lastname ORDER BY x.lastname, x.firstname';
 
     var node = db.cypher({
         query: queryString,

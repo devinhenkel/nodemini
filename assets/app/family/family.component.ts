@@ -1,35 +1,38 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { Routes, ROUTER_DIRECTIVES } from "@angular/router";
 
-
-import { FamilyService } from "./family.service";
-
+import { FamilyListComponent } from "./family-list.component";
+import { RelationshipComponent } from "./relationship.component";
 @Component({
-    selector: 'my-family',
+    selector: 'my-auth',
     template: `
-        <div class="row spacing" *ngFor="let member of members">
-          <section class="col-md-8 col-md-offset-2">
-            <article class="panel panel-default">
-              <my-member>{{member["x.firstname"]}} {{member["x.lastname"]}}</my-member>
-            </article>
-          </section>
+        <header class="row spacing">
+            <nav class="col-md-8 col-md-offset-2">
+                <ul class="nav nav-tabs">
+                    <li><a [routerLink]="['./list']">List</a></li>
+                    <li><a [routerLink]="['./relationship']">Relationship</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="row spacing">
+            <router-outlet></router-outlet>
         </div>
     `,
-    directives: []
+    directives: [ROUTER_DIRECTIVES],
+    styles: [`
+        .router-link-active {
+            color: #555;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+    `]
 })
-export class FamilyComponent implements OnInit {
-  constructor(private _familyService: FamilyService) {}
+@Routes([
+    {path: '/list', component: FamilyListComponent},
+    {path: '/relationship', component: RelationshipComponent}
+])
+export class FamilyComponent {
 
-  members = [];
-
-  ngOnInit() {
-      this._familyService.getAll()
-        .subscribe(
-          members => {
-            //console.log(members);
-            this.members = members;
-            //this._familyService.members = members;
-            console.log(this.members);
-          }
-        );
-  }
 }
